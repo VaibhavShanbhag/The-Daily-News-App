@@ -7,21 +7,22 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class PagerAdapter(private val context: Context, fragmentManager: FragmentManager, internal var tabcount: Int): FragmentPagerAdapter(fragmentManager) {
+class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm){
+    private val tabcount = 6
 
     override fun getCount(): Int {
         return tabcount
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position){
-            0 -> return HomeFragment()
-            1 -> return NewsFragment()
-            2 -> return ElectionFragment()
-            3 -> return CryptoFragment()
-            4 -> return SportsFragment()
-            5 -> return EntertainmentFragment()
-            else -> return HomeFragment()
+        return when(position){
+            0 -> HomeFragment()
+            1 -> NewsFragment()
+            2 -> ElectionFragment()
+            3 -> CryptoFragment()
+            4 -> SportsFragment()
+            5 -> EntertainmentFragment()
+            else -> HomeFragment()
         }
     }
 }

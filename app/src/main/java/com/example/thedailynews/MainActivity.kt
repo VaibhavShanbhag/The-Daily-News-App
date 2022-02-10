@@ -7,35 +7,33 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    val api: String = "cc14586d925f451d838347dfebcd93e7"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        val pageradapter = PagerAdapter(this, supportFragmentManager, tablayout.tabCount)
+
+        val pageradapter = PagerAdapter(supportFragmentManager)
         fragmenthoder.adapter = pageradapter
         fragmenthoder.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tablayout))
 
         tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab != null) {
-                    fragmenthoder.currentItem = tab.position
-                    Toast.makeText(this@MainActivity,"${tab.position}",Toast.LENGTH_SHORT).show()
+                fragmenthoder.currentItem = tab!!.position
+                if (tab.position == 0 || tab.position == 1 || tab.position == 2 || tab.position == 3 || tab.position == 4 || tab.position == 5){
+                    pageradapter.notifyDataSetChanged()
                 }
                 }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
             }
 
 
         })
-
-
     }
 }
