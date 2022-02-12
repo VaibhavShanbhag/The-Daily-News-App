@@ -35,7 +35,7 @@ class Adapter(var context: Context?, var modelClassArrayList: ArrayList<ModelCla
             shareNews.setOnClickListener{
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT,"${modelClassArrayList.get(position).title} \n Author: ${modelClassArrayList.get(position).author} \n Link: ${modelClassArrayList.get(position).url}")
+                intent.putExtra(Intent.EXTRA_TEXT,"${modelClassArrayList.get(position).title}\n\nAuthor: ${modelClassArrayList.get(position).author}\n\nLink: ${modelClassArrayList.get(position).url}")
                 val chooser = Intent.createChooser(intent,"Share With")
                 context.startActivity(chooser)
             }
