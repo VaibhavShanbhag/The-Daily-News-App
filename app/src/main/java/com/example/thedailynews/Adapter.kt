@@ -29,13 +29,13 @@ class Adapter(var context: Context?, var modelClassArrayList: ArrayList<ModelCla
             author.text = modelClassArrayList.get(position).author
             mainheading.text = modelClassArrayList.get(position).title
             Glide.with(context)
-                .load(modelClassArrayList.get(position).image)
+                .load(modelClassArrayList.get(position).urlToImage)
                 .into(imageView)
 
             shareNews.setOnClickListener{
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT,"${modelClassArrayList.get(position).title} \n Author: ${modelClassArrayList.get(position).author}")
+                intent.putExtra(Intent.EXTRA_TEXT,"${modelClassArrayList.get(position).title} \n Author: ${modelClassArrayList.get(position).author} \n Link: ${modelClassArrayList.get(position).url}")
                 val chooser = Intent.createChooser(intent,"Share With")
                 context.startActivity(chooser)
             }

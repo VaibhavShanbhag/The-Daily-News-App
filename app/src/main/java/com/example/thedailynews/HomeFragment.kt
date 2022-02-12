@@ -1,11 +1,13 @@
 package com.example.thedailynews
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.homefragment.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +18,7 @@ class HomeFragment: Fragment() {
     lateinit var modelClassArrayList: ArrayList<ModelClass>
     val country: String = "in"
     lateinit var adapter: Adapter
+    lateinit var recyclerViewHome: RecyclerView
 
 
     override fun onCreateView(
@@ -24,10 +27,12 @@ class HomeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var v: View = inflater.inflate(R.layout.homefragment,null)
+
+        recyclerViewHome = v.findViewById(R.id.recyclerviewhome)
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewhome?.layoutManager = LinearLayoutManager(context)
-        adapter = Adapter(context,modelClassArrayList)
-        recyclerviewhome?.adapter = adapter
+        recyclerViewHome.layoutManager = LinearLayoutManager(context)
+        adapter = Adapter(context, modelClassArrayList)
+        recyclerViewHome.adapter = adapter
 
         findNews()
 
@@ -39,13 +44,14 @@ class HomeFragment: Fragment() {
         news.enqueue(object : Callback<MainNews>{
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
-                    response.body()?.articles?.let { modelClassArrayList.addAll(it) }
+                    modelClassArrayList.addAll(response.body()?.articles!!)
                     adapter.notifyDataSetChanged()
                 }
+
+
             }
 
             override fun onFailure(call: Call<MainNews>, t: Throwable) {
-
             }
 
         })
