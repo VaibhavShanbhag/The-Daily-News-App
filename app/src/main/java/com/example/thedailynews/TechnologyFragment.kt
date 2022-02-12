@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.homefragment.*
 import kotlinx.android.synthetic.main.technologyfragment.*
 import retrofit2.Call
@@ -18,6 +19,7 @@ class TechnologyFragment: Fragment(){
     val country: String = "in"
     val category: String = "technology"
     lateinit var adapter: Adapter
+    lateinit var recyclerViewTechnology: RecyclerView
 
 
     override fun onCreateView(
@@ -27,10 +29,11 @@ class TechnologyFragment: Fragment(){
     ): View? {
         var v: View = inflater.inflate(R.layout.technologyfragment,null)
 
+        recyclerViewTechnology = v.findViewById(R.id.recyclerviewtechnology)
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewtechnology?.layoutManager = LinearLayoutManager(context)
+        recyclerViewTechnology.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewtechnology?.adapter = adapter
+        recyclerViewTechnology.adapter = adapter
 
         findNews()
 
@@ -42,7 +45,7 @@ class TechnologyFragment: Fragment(){
         news.enqueue(object : Callback<MainNews> {
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
-                    response.body()?.articles?.let { modelClassArrayList.addAll(it) }
+                    modelClassArrayList.addAll(response.body()?.articles!!)
                     adapter.notifyDataSetChanged()
                 }
             }

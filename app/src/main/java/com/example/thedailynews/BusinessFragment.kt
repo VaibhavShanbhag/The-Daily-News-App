@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.businessfragment.*
 import kotlinx.android.synthetic.main.businessfragment.*
 import kotlinx.android.synthetic.main.homefragment.*
@@ -20,6 +21,7 @@ class BusinessFragment: Fragment(){
     val country: String = "in"
     val category: String = "business"
     lateinit var adapter: Adapter
+    lateinit var recyclerViewBusiness: RecyclerView
 
 
     override fun onCreateView(
@@ -29,10 +31,11 @@ class BusinessFragment: Fragment(){
     ): View? {
         var v: View = inflater.inflate(R.layout.businessfragment,null)
 
+        recyclerViewBusiness = v.findViewById(R.id.recyclerviewbusiness)
         modelClassArrayList = ArrayList<ModelClass>()
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewbusiness?.adapter = adapter
-        recyclerviewbusiness?.layoutManager = LinearLayoutManager(context)
+        recyclerViewBusiness.adapter = adapter
+        recyclerViewBusiness.layoutManager = LinearLayoutManager(context)
         findNews()
 
         return v
@@ -43,7 +46,7 @@ class BusinessFragment: Fragment(){
         news.enqueue(object : Callback<MainNews> {
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
-                    response.body()?.articles?.let { modelClassArrayList.addAll(it) }
+                    modelClassArrayList.addAll(response.body()?.articles!!)
                     adapter.notifyDataSetChanged()
                 }
             }

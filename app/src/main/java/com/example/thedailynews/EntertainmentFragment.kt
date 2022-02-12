@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.entertainmentfragment.*
 import kotlinx.android.synthetic.main.homefragment.*
 import retrofit2.Call
@@ -18,6 +19,7 @@ class EntertainmentFragment: Fragment() {
     val country: String = "in"
     val category: String = "entertainment"
     lateinit var adapter: Adapter
+    lateinit var recyclerViewEntertainment: RecyclerView
 
 
     override fun onCreateView(
@@ -27,10 +29,11 @@ class EntertainmentFragment: Fragment() {
     ): View? {
         var v: View = inflater.inflate(R.layout.entertainmentfragment,null)
 
+        recyclerViewEntertainment = v.findViewById(R.id.recyclerviewentertainment)
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewentertainment?.layoutManager = LinearLayoutManager(context)
+        recyclerViewEntertainment.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewentertainment?.adapter = adapter
+        recyclerViewEntertainment.adapter = adapter
 
         findNews()
 
@@ -42,7 +45,7 @@ class EntertainmentFragment: Fragment() {
         news.enqueue(object : Callback<MainNews> {
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
-                    response.body()?.articles?.let { modelClassArrayList.addAll(it) }
+                    modelClassArrayList.addAll(response.body()?.articles!!)
                     adapter.notifyDataSetChanged()
                 }
             }

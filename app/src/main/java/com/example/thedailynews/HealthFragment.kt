@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.healthfragment.*
 import kotlinx.android.synthetic.main.homefragment.*
 import retrofit2.Call
@@ -18,6 +19,7 @@ class HealthFragment: Fragment() {
     val country: String = "in"
     val category: String = "health"
     lateinit var adapter: Adapter
+    lateinit var recyclerViewHealth: RecyclerView
 
 
     override fun onCreateView(
@@ -27,10 +29,11 @@ class HealthFragment: Fragment() {
     ): View? {
         var v: View = inflater.inflate(R.layout.healthfragment,null)
 
+        recyclerViewHealth = v.findViewById(R.id.recyclerviewhealth)
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewhealth?.layoutManager = LinearLayoutManager(context)
+        recyclerViewHealth.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewhealth?.adapter = adapter
+        recyclerViewHealth.adapter = adapter
 
         findNews()
 
@@ -42,7 +45,7 @@ class HealthFragment: Fragment() {
         news.enqueue(object : Callback<MainNews>{
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
-                    response.body()?.articles?.let { modelClassArrayList.addAll(it) }
+                    modelClassArrayList.addAll(response.body()?.articles!!)
                     adapter.notifyDataSetChanged()
                 }
             }
