@@ -1,7 +1,7 @@
 package com.example.thedailynews
 
+import android.content.Context
 import android.content.Intent
-import android.content.Intent.ACTION_SEND
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.layout_item.view.*
 
-class Adapter(var modelClassArrayList: List<ModelClass>): RecyclerView.Adapter<Adapter.ViewHolder>(){
+class Adapter(var context: Context?, var modelClassArrayList: ArrayList<ModelClass>): RecyclerView.Adapter<Adapter.ViewHolder>(){
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter.ViewHolder {

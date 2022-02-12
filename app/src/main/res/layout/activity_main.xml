@@ -50,21 +50,21 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="News"
+            android:text="Health"
             android:id="@+id/news"/>
 
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Election 2022"
+            android:text="Technology"
             android:id="@+id/election22"/>
 
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="crypto Daily"
+            android:text="Business"
             android:id="@+id/crypto_daily"/>
 
         <com.google.android.material.tabs.TabItem

@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.healthfragment.*
 import kotlinx.android.synthetic.main.homefragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment: Fragment() {
+class HealthFragment: Fragment() {
     val api: String = "cc14586d925f451d838347dfebcd93e7"
     lateinit var modelClassArrayList: ArrayList<ModelClass>
     val country: String = "in"
+    val category: String = "health"
     lateinit var adapter: Adapter
 
 
@@ -23,11 +25,12 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var v: View = inflater.inflate(R.layout.homefragment,null)
+        var v: View = inflater.inflate(R.layout.healthfragment,null)
+
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewhome?.layoutManager = LinearLayoutManager(context)
+        recyclerviewhealth?.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewhome?.adapter = adapter
+        recyclerviewhealth?.adapter = adapter
 
         findNews()
 
@@ -35,7 +38,7 @@ class HomeFragment: Fragment() {
     }
 
     private fun findNews() {
-        val news = NewsService.newsInstance.getNews(country, 100,api)
+        val news = NewsService.newsInstance.getCategoryNews(country,category,100,api)
         news.enqueue(object : Callback<MainNews>{
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
@@ -50,9 +53,5 @@ class HomeFragment: Fragment() {
 
         })
 
-
-
     }
-
-
 }

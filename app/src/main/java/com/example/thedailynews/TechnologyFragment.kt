@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.homefragment.*
+import kotlinx.android.synthetic.main.technologyfragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment: Fragment() {
+class TechnologyFragment: Fragment(){
     val api: String = "cc14586d925f451d838347dfebcd93e7"
     lateinit var modelClassArrayList: ArrayList<ModelClass>
     val country: String = "in"
+    val category: String = "technology"
     lateinit var adapter: Adapter
 
 
@@ -23,11 +25,12 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var v: View = inflater.inflate(R.layout.homefragment,null)
+        var v: View = inflater.inflate(R.layout.technologyfragment,null)
+
         modelClassArrayList = ArrayList<ModelClass>()
-        recyclerviewhome?.layoutManager = LinearLayoutManager(context)
+        recyclerviewtechnology?.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(context,modelClassArrayList)
-        recyclerviewhome?.adapter = adapter
+        recyclerviewtechnology?.adapter = adapter
 
         findNews()
 
@@ -35,8 +38,8 @@ class HomeFragment: Fragment() {
     }
 
     private fun findNews() {
-        val news = NewsService.newsInstance.getNews(country, 100,api)
-        news.enqueue(object : Callback<MainNews>{
+        val news = NewsService.newsInstance.getCategoryNews(country, category,100,api)
+        news.enqueue(object : Callback<MainNews> {
             override fun onResponse(call: Call<MainNews>, response: Response<MainNews>) {
                 if (response.isSuccessful){
                     response.body()?.articles?.let { modelClassArrayList.addAll(it) }
@@ -53,6 +56,5 @@ class HomeFragment: Fragment() {
 
 
     }
-
 
 }
