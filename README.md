@@ -33,7 +33,7 @@ API Used: [link](https://meme-api.herokuapp.com/gimme)
     </td>
     <td>
       <p><b>Sports News</b></p>
-      <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/SportsNews.jpg" width="250">
+      <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/SportsNews.jpg" width="300">
     </td>
   </tr>
   <tr>
