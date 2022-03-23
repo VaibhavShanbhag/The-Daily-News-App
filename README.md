@@ -4,7 +4,7 @@ Meme Share App is the app that shows differnet variety of memes from the reddit 
 API Used: [link](https://meme-api.herokuapp.com/gimme)
 
 # Technology Used 🛠
-<p><b>Language</b></p>
+<p><b>Languages</b></p>
 <ul>
   <li><b>Kotlin</b> -> Backend(Logic)</li>
   <li><b>XML</b> -> Frontend</li>
@@ -12,8 +12,18 @@ API Used: [link](https://meme-api.herokuapp.com/gimme)
   
   <p><b>Library</b></p>
 <ul>
-  <li><b>Volley Library</b> -> Network Library helped in getting the json object as a response through a get request.</li>
+  <li><b>Retrofit Library</b> -> Network Library helped in getting the json object as a response through a get request.</li>
   <li><b>Glide Library</b> -> Image Processing Library helped in fast loading of the image throught the json object.</li>
+  </ul>
+  
+   <p><b>Android Concepts</b></p>
+<ul>
+  <li><b>Intents</b></li>
+  <li><b>Fragments</b></li>
+  <li><b>Viewpager</b></li>
+  <li><b>Tab Layout</b></li>
+  <li><b>Customize ToolBar</b></li>
+  <li><b>WebView</b></li>
   </ul>
 
 # Screenshots 📷
@@ -31,12 +41,12 @@ API Used: [link](https://meme-api.herokuapp.com/gimme)
       <p><b>Technology News</b></p>
       <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/TechNews.jpg" width="250">
     </td>
-    <td>
-      <p><b>Sports News</b></p>
-      <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/SportsNews.jpg" width="300">
-    </td>
   </tr>
   <tr>
+    <td>
+      <p><b>Sports News</b></p>
+      <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/SportsNews.jpg" width="250">
+    </td>
      <td>
       <p><b>Specific News(Using Webview)</b></p>
       <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/WebviewNews.jpg" width="250">
@@ -45,6 +55,8 @@ API Used: [link](https://meme-api.herokuapp.com/gimme)
       <p>Share Specific News</b></p>
       <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/ShareNews.jpg" width="250">
     </td>
+  </tr>
+  <tr>
     <td>
       <p>Share News(Author, Link, Title)</b></p>
       <img src="https://github.com/VaibhavShanbhag/The-Daily-News-App/blob/master/assets/ShareNewsLink.jpg" width="250">
