@@ -1,7 +1,8 @@
 # About 👩‍💻
-Meme Share App is the app that shows differnet variety of memes from the reddit source. The app gets the data from the api through the json object and displays the image using the image processing library. The app also has a share button so that people can share meme to the other people.
+The Daily News App is the app that shows different variety of news. Such as the news about technology, businesss, health and entertainment etc. The apps send the request to the app and gets the response in the form of json object. The respose of json object are selcted and used in the app such as the title of the news, URL Image, news url etc. All the json object data are added into the adapter and adapter helps in completion of the news view. Also you can share the news with other people.
 
-API Used: [link](https://meme-api.herokuapp.com/gimme)
+API Used: [link](https://newsapi.org)
+<br>Login with your creditionals and read the documentation for how to use the api through various category and country.
 
 # Technology Used 🛠
 <p><b>Languages</b></p>
@@ -19,6 +20,7 @@ API Used: [link](https://meme-api.herokuapp.com/gimme)
    <p><b>Android Concepts</b></p>
 <ul>
   <li><b>Intents</b></li>
+  <li><b>RecyclerView</b></li>
   <li><b>Fragments</b></li>
   <li><b>Viewpager</b></li>
   <li><b>Tab Layout</b></li>
